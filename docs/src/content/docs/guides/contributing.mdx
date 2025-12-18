@@ -1,0 +1,214 @@
+---
+title: Contributing
+description: Guidelines for contributing to mitosis-plugins
+---
+
+Thank you for your interest in contributing to mitosis-plugins! This guide provides all the information you need to get started.
+
+## Code of Conduct
+
+This project adheres to a code of conduct. By participating, you are expected to uphold this code. Please read our [Code of Conduct](/community/code-of-conduct/) before contributing.
+
+## Getting Started
+
+### Development Setup
+
+1. Fork the repository on GitHub
+2. Clone your fork locally:
+   ```bash
+   git clone https://github.com/your-username/mitosis-plugins.git
+   cd mitosis-plugins
+   ```
+
+3. Install dependencies:
+   ```bash
+   bun install
+   ```
+
+4. Run tests to ensure everything is working:
+   ```bash
+   bun test
+   ```
+
+### Project Structure
+
+import { FileTree } from '@astrojs/starlight/components';
+
+<FileTree>
+- mitosis-plugins/
+  - src/ Plugin source code
+    - magic-imports/ Magic Imports plugin
+    - index-generator/ Index Generator plugin
+    - story-generator/ Story Generator plugin
+    - rich-types/ Rich Types plugin
+    - target-files/ Target Files plugin
+    - css-modules/ CSS Modules plugin
+  - templates/ Story templates
+  - tests/ Test files
+  - examples/ Example configurations
+  - README.md Main documentation
+</FileTree>
+
+## How to Contribute
+
+### Reporting Issues
+
+Before creating an issue:
+
+1. Check if the issue already exists in the [issue tracker](https://github.com/svallory/mitosis-plugins/issues)
+2. Ensure you're using the latest version
+3. Provide a minimal reproduction when possible
+
+When creating an issue, please include:
+- Clear title and description
+- Steps to reproduce
+- Expected vs actual behavior
+- Environment details (Node.js version, OS, etc.)
+
+### Suggesting Features
+
+Feature requests are welcome! Please:
+
+1. Check if the feature already exists or is planned
+2. Explain the use case and why it would be valuable
+3. Consider if it can be implemented as a separate plugin
+4. Be open to discussion and alternative solutions
+
+### Submitting Pull Requests
+
+1. **Create a branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make your changes**:
+   - Follow the existing code style
+   - Write tests for new functionality
+   - Update documentation as needed
+   - Keep commits atomic and well-described
+
+3. **Test your changes**:
+   ```bash
+   # Run all tests
+   bun test
+
+   # Run linter
+   bun run lint
+
+   # Type check
+   bun run typecheck
+   ```
+
+4. **Commit your changes**:
+   ```bash
+   git add .
+   git commit -m "feat: add support for X"
+   ```
+
+   We use [Conventional Commits](https://www.conventionalcommits.org/):
+   - `feat:` New feature
+   - `fix:` Bug fix
+   - `docs:` Documentation changes
+   - `test:` Test additions or changes
+   - `refactor:` Code refactoring
+   - `chore:` Maintenance tasks
+
+5. **Push and create a PR**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+   Then create a pull request on GitHub with:
+   - Clear description of changes
+   - Reference to any related issues
+   - Screenshots/examples if applicable
+
+### Code Style
+
+- Use TypeScript for type safety
+- Follow existing formatting (we use Prettier)
+- Write self-documenting code with clear variable names
+- Add JSDoc comments for public APIs
+- Keep functions small and focused
+
+### Testing
+
+- Write unit tests for new functionality
+- Ensure all tests pass before submitting PR
+- Add integration tests for plugin interactions
+- Test with real Mitosis projects when possible
+
+### Documentation
+
+- Update README.md if adding new features
+- Update plugin-specific documentation in `src/`
+- Add code examples for new configurations
+- Keep documentation clear and concise
+
+## Plugin Development
+
+### Creating a New Plugin
+
+1. Create a new directory in `src/`:
+   ```bash
+   mkdir src/my-plugin
+   ```
+
+2. Create the plugin structure:
+
+   <FileTree>
+   - src/my-plugin/
+     - index.ts Main plugin export
+     - plugin.ts Plugin implementation
+     - README.md Plugin documentation
+     - tests/ Plugin tests
+       - plugin.test.ts
+   </FileTree>
+
+3. Export from main index:
+   ```typescript
+   // src/index.ts
+   export { myPlugin } from './my-plugin';
+   ```
+
+4. Follow existing plugin patterns for consistency
+
+### Plugin Best Practices
+
+- Use the appropriate Mitosis hook (`code.pre`, `json.post`, etc.)
+- Provide sensible defaults
+- Make configuration optional when possible
+- Add debug logging for troubleshooting
+- Handle errors gracefully
+- Document all configuration options
+
+## Release Process
+
+Releases are managed by maintainers:
+
+1. Version bumps follow semantic versioning
+2. Changelog is auto-generated from conventional commits
+3. GitHub releases are created with release notes
+4. Package is published to npm
+
+## Getting Help
+
+- Check existing documentation and examples
+- Look through existing issues and discussions
+- Ask questions in [GitHub Discussions](https://github.com/svallory/mitosis-plugins/discussions)
+- Open an issue if you need clarification
+
+## Recognition
+
+Contributors are recognized in:
+- Release notes for significant contributions
+- README.md contributors section (for major contributions)
+- Repository insights/graphs
+
+---
+
+Thank you for contributing to mitosis-plugins!
+
+If you'd like to support the project financially, check out our [Sponsor page](/community/sponsor/).
+
+*This contributing guide is inspired by [Atom's Contributing Guide](https://github.com/atom/atom/blob/master/CONTRIBUTING.md).*

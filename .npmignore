@@ -1,0 +1,17 @@
+# Exclude documentation
+docs/
+*.md
+!README.md
+!CHANGELOG.md
+
+# Exclude configuration
+tsconfig.json
+bun.lock
+.claude/
+.github/
+.git/
+
+# Exclude build artifacts (though we want 'dist' in the package, 
+# this file is used to exclude things that might be in the root)
+node_modules/
+npm-debug.log

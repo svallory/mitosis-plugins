@@ -1,0 +1,175 @@
+---
+title: Getting Started
+description: Quick start guide for setting up mitosis-plugins in your project
+---
+
+## Quick Start
+
+This guide will help you get started with mitosis-plugins in minutes.
+
+### Installation
+
+```bash
+bun add mitosis-plugins
+```
+
+### Basic Configuration
+
+Create a `mitosis.config.cjs` file in your project root:
+
+```javascript
+const {
+  magicImportsPlugin,
+  indexGeneratorPlugin,
+  targetFilesPlugin
+} = require('mitosis-plugins');
+
+module.exports = {
+  files: 'src/**/*.lite.tsx',
+  targets: ['react', 'vue', 'svelte'],
+  commonOptions: {
+    plugins: [
+      magicImportsPlugin({
+        imports: {
+          'lucide': {
+            mapping: {
+              react: 'lucide-react',
+              vue: 'lucide-vue-next',
+              svelte: 'lucide-svelte'
+            },
+            shim: 'lucide-react'
+          }
+        }
+      }),
+      targetFilesPlugin({
+        allTargets: ['react', 'vue', 'svelte']
+      })
+    ]
+  },
+  options: {
+    react: {
+      plugins: [indexGeneratorPlugin()]
+    },
+    vue: {
+      plugins: [indexGeneratorPlugin()]
+    },
+    svelte: {
+      plugins: [indexGeneratorPlugin()]
+    }
+  }
+};
+```
+
+### Run Mitosis Build
+
+```bash
+bunx mitosis build
+```
+
+This will compile your `.lite.tsx` components to React, Vue, and Svelte with:
+- Framework-specific imports (lucide icons)
+- Clean import paths via index files
+- Target-specific file handling
+
+## Complete Configuration Example
+
+Here's a comprehensive example showing all available plugins:
+
+```javascript
+const {
+  magicImportsPlugin,
+  indexGeneratorPlugin,
+  storyGeneratorPlugin,
+  richTypesPlugin,
+  targetFilesPlugin,
+  cssModulesPlugin
+} = require('mitosis-plugins');
+
+module.exports = {
+  files: 'src/**/*.lite.tsx',
+  targets: ['react', 'vue', 'svelte'],
+  commonOptions: {
+    // Plugins applied to all targets
+    plugins: [
+      magicImportsPlugin({
+        imports: {
+          'lucide': {
+            mapping: {
+              react: 'lucide-react',
+              vue: 'lucide-vue-next',
+              svelte: 'lucide-svelte'
+            },
+            shim: 'lucide-react'
+          }
+        },
+        ambientTypesPath: 'src/ambient.d.ts'
+      }),
+      targetFilesPlugin({
+        allTargets: ['react', 'vue', 'svelte']
+      }),
+      cssModulesPlugin()
+    ]
+  },
+  options: {
+    react: {
+      plugins: [
+        indexGeneratorPlugin(),
+        storyGeneratorPlugin(),
+        richTypesPlugin({
+          react: { useStateDefaultType: 'string | null' }
+        })
+      ]
+    },
+    vue: {
+      plugins: [
+        indexGeneratorPlugin(),
+        storyGeneratorPlugin()
+      ]
+    },
+    svelte: {
+      plugins: [
+        indexGeneratorPlugin(),
+        storyGeneratorPlugin()
+      ]
+    }
+  }
+};
+```
+
+## API Reference
+
+All plugins export their configuration types:
+
+```typescript
+import type {
+  MagicImportsOptions,
+  IndexGeneratorOptions,
+  StoryGeneratorOptions,
+  RichTypesOptions,
+  TargetFilesOptions,
+  CssModulesPluginOptions
+} from 'mitosis-plugins';
+```
+
+### Configuration Types
+
+Each plugin accepts its own configuration object. See individual plugin documentation for detailed API references:
+
+- [Magic Imports API →](/plugins/magic-imports/#api-reference)
+- [Index Generator API →](/plugins/index-generator/#configuration-options)
+- [Story Generator API →](/plugins/story-generator/#configuration)
+- [Rich Types API →](/plugins/rich-types/#configuration-options)
+- [Target Files API →](/plugins/target-files/#configuration)
+- [CSS Modules API →](/plugins/css-modules/#configuration-options)
+
+## Next Steps
+
+- Read the [Overview](/guides/overview/) to understand what each plugin does
+- Explore individual plugin guides for advanced features:
+  - [Magic Imports](/plugins/magic-imports/) - Framework-specific package mapping
+  - [Index Generator](/plugins/index-generator/) - Clean import paths
+  - [Story Generator](/plugins/story-generator/) - Auto-generate Storybook stories
+  - [Rich Types](/plugins/rich-types/) - Fix TypeScript inference issues
+  - [Target Files](/plugins/target-files/) - Framework-specific file handling
+  - [CSS Modules](/plugins/css-modules/) - Separate CSS file support
+- Learn how to [contribute](/guides/contributing/) to the project

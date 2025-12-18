@@ -1,0 +1,54 @@
+{
+    "name": "mitosis-plugins",
+    "version": "0.1.0",
+    "description": "A collection of plugins for Mitosis to enhance cross-framework component development",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "scripts": {
+        "build": "tsc && npm run copy:templates",
+        "copy:templates": "mkdir -p dist/story-generator/templates && cp src/story-generator/templates/*.hbs dist/story-generator/templates/",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "npm run clean && npm run build"
+    },
+    "keywords": [
+        "mitosis",
+        "plugin",
+        "cross-framework",
+        "react",
+        "vue",
+        "svelte",
+        "angular",
+        "storybook",
+        "code-generation"
+    ],
+    "author": "",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-org/mitosis-plugins"
+    },
+    "homepage": "https://github.com/your-org/mitosis-plugins#readme",
+    "bugs": {
+        "url": "https://github.com/your-org/mitosis-plugins/issues"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "peerDependencies": {
+        "@builder.io/mitosis": ">=0.3.0"
+    },
+    "dependencies": {
+        "handlebars": "^4.7.8",
+        "postcss": "^8.5.6",
+        "postcss-modules": "^6.0.1"
+    },
+    "devDependencies": {
+        "@builder.io/mitosis": "latest",
+        "@types/node": "^20.0.0",
+        "typescript": "^5.0.0"
+    }
+}

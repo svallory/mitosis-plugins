@@ -1,0 +1,124 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  status?: 'stable' | 'beta' | 'experimental';
+}
+
+const { title, description, href, status = 'stable' } = Astro.props;
+
+// Handle base URL for root-relative links
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const resolvedHref = href.startsWith('/') && !href.startsWith('//')
+  ? `${base}${href}`
+  : href;
+
+const statusColors = {
+  stable: { bg: 'var(--sl-color-green)', text: 'var(--sl-color-black)' },
+  beta: { bg: 'var(--sl-color-orange)', text: 'var(--sl-color-black)' },
+  experimental: { bg: 'var(--sl-color-purple)', text: 'var(--sl-color-white)' },
+};
+---
+
+<a class="plugin-card" href={resolvedHref}>
+  <div class="plugin-header">
+    <h3 class="plugin-title">{title}</h3>
+    {status !== 'stable' && (
+      <span class="plugin-status" style={`--status-bg: ${statusColors[status].bg}; --status-text: ${statusColors[status].text}`}>
+        {status}
+      </span>
+    )}
+  </div>
+  <p class="plugin-description">{description}</p>
+  <span class="plugin-link">
+    Learn more
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</a>
+
+<style>
+  .plugin-card {
+    display: block;
+    padding: 1.75rem;
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .plugin-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--color-primary-gradient, linear-gradient(35.65deg, #3a1c71 -10.94%, var(--sl-color-accent) 61.04%, #ffca7b 133.01%));
+    border-radius: inherit;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .plugin-card:hover::before {
+    opacity: 1;
+  }
+
+  .plugin-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .plugin-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .plugin-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--sl-color-white);
+  }
+
+  .plugin-status {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    background: var(--status-bg);
+    color: var(--status-text);
+  }
+
+  .plugin-description {
+    font-size: 1rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.7;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .plugin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--sl-color-accent);
+    transition: gap 0.2s ease;
+  }
+
+  .plugin-card:hover .plugin-link {
+    gap: 0.75rem;
+  }
+</style>

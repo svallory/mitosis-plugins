@@ -1,0 +1,42 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="code-example">
+  {title && <div class="code-header">{title}</div>}
+  <div class="code-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .code-example {
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .code-header {
+    padding: 0.75rem 1rem;
+    background: var(--sl-color-gray-5);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--sl-color-gray-2);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+
+  .code-content {
+    padding: 1rem;
+  }
+
+  .code-content :global(pre) {
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+
+interface Props {
+  title: string;
+  icon?: string;
+  href?: string;
+}
+
+const { title, icon, href } = Astro.props;
+
+// Handle base URL for root-relative links
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const resolvedHref = href && href.startsWith('/') && !href.startsWith('//')
+  ? `${base}${href}`
+  : href;
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag class="feature-card" href={resolvedHref}>
+  {icon && (
+    <div class="feature-icon">
+      <Icon name={icon} size="1.5rem" />
+    </div>
+  )}
+  <h3 class="feature-title">{title}</h3>
+  <div class="feature-body">
+    <slot />
+  </div>
+  {href && (
+    <span class="feature-arrow">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  )}
+</Tag>
+
+<style>
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--color-primary-gradient, linear-gradient(35.65deg, #3a1c71 -10.94%, var(--sl-color-accent) 61.04%, #ffca7b 133.01%));
+    border-radius: inherit;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sl-color-accent-low);
+    border-radius: 0.625rem;
+    margin-bottom: 1.25rem;
+    color: var(--sl-color-accent);
+  }
+
+  .feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.625rem 0;
+    color: var(--sl-color-white);
+  }
+
+  .feature-body {
+    font-size: 1rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.7;
+    flex-grow: 1;
+  }
+
+  .feature-arrow {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    color: var(--sl-color-gray-3);
+    transition: all 0.2s ease;
+  }
+
+  a.feature-card:hover .feature-arrow {
+    color: var(--sl-color-accent);
+    transform: translateX(3px);
+  }
+</style>

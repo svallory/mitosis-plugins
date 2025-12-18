@@ -1,0 +1,216 @@
+/**
+ * OpenDocs Theme Color System
+ * Maps OpenDocs design tokens to Starlight's CSS variables
+ */
+
+@layer opendocs {
+
+  /**
+   * Typography Scale
+   * Using OpenDocs fluid type scale
+   */
+  :root,
+  ::backdrop {
+    --sl-text-xs: var(--od-text-xs);
+    --sl-text-sm: var(--od-text-sm);
+    --sl-text-base: var(--od-text-base);
+    --sl-text-lg: var(--od-text-lg);
+    --sl-text-xl: var(--od-text-xl);
+    --sl-text-2xl: var(--od-text-2xl);
+    --sl-text-3xl: var(--od-text-3xl);
+    --sl-text-4xl: var(--od-text-4xl);
+    --sl-text-5xl: var(--od-text-5xl);
+
+    --sl-text-h1: var(--od-text-4xl);
+    --sl-text-h2: var(--od-text-3xl);
+    --sl-text-h3: var(--od-text-2xl);
+    --sl-text-h4: var(--od-text-xl);
+    --sl-text-h5: var(--od-text-lg);
+    --sl-text-h6: var(--od-text-base);
+
+    /* Font families */
+    --sl-font: var(--od-font-body);
+    --sl-font-headings: var(--od-font-display);
+    --sl-font-mono: var(--od-font-mono);
+
+    /* Brand gradient */
+    --color-primary-gradient: linear-gradient(
+      35.65deg,
+      #3a1c71 -10.94%,
+      var(--od-color-primary) 61.04%,
+      #ffca7b 133.01%
+    );
+  }
+
+  /**
+   * DARK MODE (Default)
+   * OpenDocs brand colors mapped to Starlight variables
+   */
+  :root,
+  ::backdrop {
+    /* Base grayscale using OpenDocs tokens */
+    --sl-color-white: var(--od-color-text);
+    --sl-color-gray-1: var(--od-color-gray-200);
+    --sl-color-gray-2: var(--od-color-gray-300);
+    --sl-color-gray-3: var(--od-color-gray-400);
+    --sl-color-gray-4: var(--od-color-gray-500);
+    --sl-color-gray-5: var(--od-color-gray-700);
+    --sl-color-gray-6: var(--od-color-gray-800);
+    --sl-color-gray-7: var(--od-color-bg-muted);
+    --sl-color-black: var(--od-color-bg);
+
+    /* Accent color (Green) - Primary interactive elements */
+    --sl-color-accent-low: oklch(0.18 0.05 165);
+    --sl-color-accent: var(--od-color-accent);
+    --sl-color-accent-high: var(--od-color-accent-hover);
+    --sl-color-text-accent: var(--od-color-accent-hover);
+
+    /* Purple/Pink - Primary brand color for highlights */
+    --sl-color-purple-low: oklch(0.2 0.03 15);
+    --sl-color-purple: var(--od-color-primary);
+    --sl-color-purple-high: var(--od-color-primary-hover);
+    --sl-color-purple-accent: var(--od-color-primary-hover);
+    --sl-color-purple-accent-invert: var(--od-color-primary);
+    --sl-color-purple-alt: oklch(0.22 0.02 15);
+    --sl-color-purple-alt-invert: oklch(0.38 0.06 15);
+
+    /* Fuchsia/Pink - Secondary accents  */
+    --sl-color-blue-low: oklch(0.2 0.08 350);
+    --sl-color-blue: var(--od-color-secondary);
+    --sl-color-blue-high: var(--od-color-secondary-hover);
+    --sl-color-blue-accent: var(--od-color-secondary-hover);
+    --sl-color-blue-accent-invert: var(--od-color-secondary);
+    --sl-color-blue-alt: oklch(0.22 0.06 350);
+    --sl-color-blue-alt-invert: oklch(0.38 0.12 350);
+
+    /* Yellow/Orange - Warnings and caution */
+    --sl-color-orange-low: oklch(0.2 0.05 65);
+    --sl-color-orange: var(--od-color-warning);
+    --sl-color-orange-high: var(--od-color-warning-hover);
+    --sl-color-orange-accent: var(--od-color-warning-hover);
+    --sl-color-orange-accent-invert: var(--od-color-warning);
+    --sl-color-orange-alt: oklch(0.22 0.04 65);
+    --sl-color-orange-alt-invert: oklch(0.42 0.08 65);
+
+    /* Green - Success and positive actions */
+    --sl-color-green-low: oklch(0.18 0.05 165);
+    --sl-color-green: var(--od-color-accent);
+    --sl-color-green-high: var(--od-color-accent-hover);
+    --sl-color-green-accent: var(--od-color-accent-hover);
+    --sl-color-green-accent-invert: var(--od-color-accent);
+
+    /* Red - Errors and danger (using fuchsia as base) */
+    --sl-color-red-low: oklch(0.2 0.08 0);
+    --sl-color-red: oklch(0.55 0.22 15);
+    --sl-color-red-high: oklch(0.85 0.12 15);
+    --sl-color-red-accent: oklch(0.9 0.08 15);
+    --sl-color-red-accent-invert: oklch(0.6 0.2 15);
+    --sl-color-red-alt: oklch(0.22 0.06 15);
+    --sl-color-red-alt-invert: oklch(0.38 0.1 15);
+
+    /* Background colors */
+    --sl-color-bg-nav: var(--od-color-bg-elevated);
+    --sl-color-bg-sidebar: var(--od-color-bg-elevated);
+    --sl-color-backdrop-overlay: var(--od-color-overlay);
+
+    /* UI element colors */
+    --sl-rapide-ui-bg-color: var(--od-color-bg);
+    --sl-rapide-ui-header-bg-color: oklch(0.16 0.003 290 / 0.92);
+    --sl-rapide-ui-border-color: var(--od-color-border);
+
+    /* Code block markers */
+    --sl-rapide-ec-marker-bg-color: oklch(0.22 0.004 290);
+    --sl-rapide-ec-marker-border-color: var(--od-color-border-strong);
+
+    /* Hairline colors */
+    --sl-color-hairline: var(--od-color-border-subtle);
+    --sl-color-hairline-light: var(--od-color-border);
+    --sl-color-hairline-shade: var(--od-color-border-strong);
+  }
+
+  /**
+   * LIGHT MODE
+   * OpenDocs brand colors for light theme
+   */
+  :root[data-theme='light'],
+  [data-theme='light'] ::backdrop {
+    /* Base grayscale using OpenDocs tokens (inverted for light mode) */
+    --sl-color-white: var(--od-color-text);
+    --sl-color-gray-1: var(--od-color-gray-800);
+    --sl-color-gray-2: var(--od-color-gray-700);
+    --sl-color-gray-3: var(--od-color-gray-600);
+    --sl-color-gray-4: var(--od-color-gray-500);
+    --sl-color-gray-5: var(--od-color-gray-300);
+    --sl-color-gray-6: var(--od-color-gray-200);
+    --sl-color-gray-7: var(--od-color-bg-muted);
+    --sl-color-black: var(--od-color-bg);
+
+    /* Accent color (Green) */
+    --sl-color-accent-low: var(--od-color-accent-muted);
+    --sl-color-accent: var(--od-color-accent);
+    --sl-color-accent-high: var(--od-color-accent-hover);
+    --sl-color-text-accent: var(--od-color-accent);
+
+    /* Purple/Pink - Primary brand color */
+    --sl-color-purple-low: var(--od-color-primary-muted);
+    --sl-color-purple: var(--od-color-primary);
+    --sl-color-purple-high: var(--od-color-primary-hover);
+    --sl-color-purple-accent: var(--od-color-primary);
+    --sl-color-purple-accent-invert: var(--od-color-primary-hover);
+    --sl-color-purple-alt: oklch(0.94 0.02 15);
+    --sl-color-purple-alt-invert: oklch(0.68 0.08 15);
+
+    /* Fuchsia/Pink - Secondary accents */
+    --sl-color-blue-low: var(--od-color-secondary-muted);
+    --sl-color-blue: var(--od-color-secondary);
+    --sl-color-blue-high: var(--od-color-secondary-hover);
+    --sl-color-blue-accent: var(--od-color-secondary);
+    --sl-color-blue-accent-invert: var(--od-color-secondary-hover);
+    --sl-color-blue-alt: oklch(0.94 0.04 350);
+    --sl-color-blue-alt-invert: oklch(0.68 0.2 350);
+
+    /* Yellow/Orange - Warnings */
+    --sl-color-orange-low: var(--od-color-warning-muted);
+    --sl-color-orange: var(--od-color-warning);
+    --sl-color-orange-high: var(--od-color-warning-hover);
+    --sl-color-orange-accent: var(--od-color-warning);
+    --sl-color-orange-accent-invert: var(--od-color-warning-hover);
+    --sl-color-orange-alt: oklch(0.96 0.02 65);
+    --sl-color-orange-alt-invert: oklch(0.78 0.12 65);
+
+    /* Green - Success */
+    --sl-color-green-low: var(--od-color-accent-muted);
+    --sl-color-green: var(--od-color-accent);
+    --sl-color-green-high: var(--od-color-accent-hover);
+    --sl-color-green-accent: var(--od-color-accent);
+    --sl-color-green-accent-invert: var(--od-color-accent-hover);
+
+    /* Red - Errors (warmer red for light mode) */
+    --sl-color-red-low: oklch(0.96 0.02 15);
+    --sl-color-red: oklch(0.58 0.22 15);
+    --sl-color-red-high: oklch(0.45 0.2 15);
+    --sl-color-red-accent: oklch(0.42 0.2 15);
+    --sl-color-red-accent-invert: oklch(0.55 0.22 15);
+    --sl-color-red-alt: oklch(0.94 0.04 15);
+    --sl-color-red-alt-invert: oklch(0.72 0.14 15);
+
+    /* Background colors */
+    --sl-color-bg-nav: var(--od-color-bg);
+    --sl-color-bg-sidebar: var(--od-color-bg);
+    --sl-color-backdrop-overlay: var(--od-color-overlay);
+
+    /* UI element colors */
+    --sl-rapide-ui-bg-color: var(--od-color-bg-elevated);
+    --sl-rapide-ui-header-bg-color: oklch(0.99 0.001 290 / 0.85);
+    --sl-rapide-ui-border-color: var(--od-color-border);
+
+    /* Code block markers */
+    --sl-rapide-ec-marker-bg-color: oklch(0.96 0.002 290);
+    --sl-rapide-ec-marker-border-color: var(--od-color-border-strong);
+
+    /* Hairline colors */
+    --sl-color-hairline: var(--od-color-border-subtle);
+    --sl-color-hairline-light: var(--od-color-border);
+    --sl-color-hairline-shade: var(--od-color-border-strong);
+  }
+}

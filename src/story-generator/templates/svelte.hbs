@@ -1,0 +1,33 @@
+// @ts-nocheck - TypeScript can't infer types from .svelte imports
+import {{componentName}} from '../src/{{componentPath}}/{{componentName}}/{{componentName}}.svelte';
+{{#if imports}}
+{{#each imports}}
+{{{this}}}
+{{/each}}
+{{/if}}
+
+const meta = {
+  title: '{{title}}',
+  component: {{componentName}},
+  parameters: {{{json parameters}}},
+  tags: {{{json tags}}},
+{{#if argTypes}}
+  argTypes: {{{json argTypes}}},
+{{/if}}
+};
+
+export default meta;
+
+export const Default = {
+  args: {{{defaultArgs}}},
+};
+{{#each stories}}
+
+/**{{#if description}}
+ * {{description}}{{/if}}
+ */
+export const {{name}} = {
+  args: {{{args}}},{{#if parameters}}
+  parameters: {{{json parameters}}},{{/if}}
+};
+{{/each}}

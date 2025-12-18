@@ -1,0 +1,703 @@
+@layer opendocs {
+
+  /**
+   * Header
+   */
+  header.header {
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+    background-color: var(--sl-rapide-ui-header-bg-color);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+
+    .site-title {
+      font-size: var(--sl-text-h3);
+    }
+
+    .right-group {
+      gap: 0;
+    }
+
+    .social-icons a {
+      color: var(--sl-color-gray-2);
+
+      &:hover {
+        color: var(--sl-color-accent-high);
+        opacity: 1;
+      }
+
+      &:last-child {
+        margin-inline-end: -0.125rem;
+      }
+    }
+
+    starlight-lang-select {
+      label {
+        --sl-label-icon-size: 1rem;
+
+        &:is(:hover, :focus-within) {
+          color: var(--sl-color-accent-high);
+        }
+      }
+
+      select {
+        box-sizing: content-box;
+        width: calc(var(--sl-rapide-lang-select-width));
+      }
+    }
+
+    @media (prefers-reduced-transparency) {
+      -webkit-backdrop-filter: initial;
+      backdrop-filter: initial;
+      background-color: var(--sl-color-black);
+    }
+
+    @media (min-width: 50rem) {
+      &:not(:has(starlight-lang-select)) {
+        padding-inline-end: calc(var(--sl-nav-pad-x) - 1rem);
+      }
+    }
+  }
+
+  starlight-menu-button {
+    button {
+      box-shadow: none;
+
+      [data-theme='light'] & {
+        background-color: var(--sl-color-white);
+        color: var(--sl-color-black);
+      }
+    }
+
+    [data-theme='light'] &[aria-expanded='true'] button {
+      background-color: var(--sl-color-gray-2);
+    }
+  }
+
+  /**
+   * Search
+   */
+  site-search {
+    dialog {
+      background-color: var(--sl-color-black);
+      box-shadow: none;
+      min-height: auto;
+
+      .dialog-frame {
+        padding: 1rem;
+      }
+
+      #starlight__search {
+        --sl-search-corners: calc(var(--od-radius-lg) * var(--pagefind-ui-scale));
+        --pagefind-ui-border-radius: calc(var(--od-radius-lg) * var(--pagefind-ui-scale));
+      }
+
+      .pagefind-ui__search-input {
+        background-color: var(--sl-rapide-ui-bg-color);
+        border: 1px solid var(--sl-color-gray-4);
+
+        &:focus-visible {
+          border-color: var(--sl-color-accent);
+          outline: 1px solid var(--sl-color-accent);
+        }
+      }
+
+      .pagefind-ui__message {
+        padding-top: 0;
+
+        &:has(+ .pagefind-ui__results:empty) {
+          padding: 0;
+        }
+      }
+
+      :is(.pagefind-ui__result-title:not(:where(.pagefind-ui__result-nested *)), .pagefind-ui__result-nested) {
+        border-inline: 1px solid var(--sl-rapide-ui-border-color);
+        outline-offset: -1px;
+
+        &:not(:focus-within) {
+          background-color: var(--sl-rapide-ui-bg-color);
+        }
+      }
+
+      .pagefind-ui__result-inner {
+        gap: 0;
+
+        &> :first-child {
+          border-top: 1px solid var(--sl-rapide-ui-border-color);
+        }
+
+        &> :last-child {
+          border-bottom: 1px solid var(--sl-rapide-ui-border-color);
+        }
+      }
+
+      .pagefind-ui__result-excerpt mark {
+        color: var(--sl-color-accent-high);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        &::backdrop {
+          animation: sl-rapide-search-backdrop-fade 150ms ease-out;
+        }
+
+        & {
+          animation: sl-rapide-search-dialog-zoom-in 150ms ease-out;
+        }
+      }
+    }
+
+    @media (min-width: 50rem) {
+      div:has(> &) {
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 72rem) {
+      div:has(> &) {
+        max-width: calc(var(--sl-content-width));
+      }
+    }
+  }
+
+  @keyframes sl-rapide-search-backdrop-fade {
+    from {
+      -webkit-backdrop-filter: initial;
+      backdrop-filter: initial;
+      background-color: transparent;
+    }
+
+    to {
+      -webkit-backdrop-filter: blur(0.25rem);
+      backdrop-filter: blur(0.25rem);
+      background-color: var(--sl-color-backdrop-overlay);
+    }
+  }
+
+  @keyframes sl-rapide-search-dialog-zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.5) translateY(-2rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /**
+   * Sidebar
+   */
+  .sidebar-pane {
+    border-inline-end: 1px solid var(--sl-color-gray-5);
+
+    summary {
+      flex-direction: row-reverse;
+      gap: 0.375rem;
+      justify-content: start;
+      padding: 0.2em var(--sl-sidebar-item-padding-inline);
+      padding-inline: calc(var(--sl-sidebar-item-padding-inline) / 2) var(--sl-sidebar-item-padding-inline);
+
+      &:is(:hover, :focus-visible) {
+
+        &,
+        & .large {
+          color: var(--sl-color-accent-high);
+        }
+      }
+
+      &:is(:hover, :focus-visible)+ul>li {
+        border-inline-start-color: var(--sl-color-accent-high);
+      }
+    }
+
+    ul ul li {
+      margin-inline-start: calc(var(--sl-sidebar-item-padding-inline) + (0.625rem / 2));
+
+      &:has(> a[aria-current='page']) {
+        border-inline-start-color: var(--sl-color-accent-high);
+      }
+
+      &:has(> a:not([aria-current='page']):is(:hover, :focus-visible)) {
+        border-inline-start-color: var(--sl-color-gray-2);
+      }
+    }
+
+    .top-level {
+      &>li+li {
+        margin-block: 0;
+      }
+
+      &>li+li:has(details),
+      &>li:has(details)+li:not(:has(details)) {
+        margin-top: 1rem;
+      }
+
+      &>li>.large {
+        color: var(--sl-color-gray-2);
+        font-size: var(--sl-text-sm);
+        font-weight: inherit;
+
+        &:is(:hover, :focus-visible) {
+          color: var(--sl-color-white);
+        }
+      }
+    }
+
+    a[aria-current='page'] {
+      background-color: initial;
+      color: var(--sl-color-text-accent);
+    }
+  }
+
+  /**
+   * Content
+   */
+  .content-panel {
+    padding-top: 1rem;
+
+    &+.content-panel {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    h1 {
+      margin-top: 0.5rem;
+
+      @media (min-width: 72rem) {
+        margin-top: 1rem;
+      }
+    }
+
+    .meta {
+      align-items: center;
+      flex-direction: row-reverse;
+
+      a {
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+
+        &:is(:hover, :focus-visible) {
+          border-color: var(--sl-color-gray-2);
+          color: var(--sl-color-gray-2);
+        }
+      }
+    }
+  }
+
+  /**
+   * Table of contents
+   */
+  .right-sidebar {
+    border-inline-start: initial;
+
+    @media (min-width: 72rem) {
+      padding-top: calc(var(--sl-nav-height) + 1.75rem);
+    }
+
+    starlight-toc li {
+      &>a {
+        border-inline-start: 1px solid var(--sl-color-hairline-light);
+        border-radius: 0;
+        margin-inline-start: 0.35rem;
+        padding-inline-start: calc(1rem * var(--depth) + var(--pad-inline) + 0.35rem);
+
+        &[aria-current='true'] {
+          border-color: var(--sl-color-accent-high);
+
+          &:is(:hover, :focus-visible) {
+            color: var(--sl-color-accent-high);
+          }
+        }
+
+        &:not([aria-current='true']):is(:hover, :focus-visible) {
+          border-color: var(--sl-color-gray-2);
+        }
+      }
+    }
+  }
+
+  /**
+   * Mobile table of contents
+   */
+  mobile-starlight-toc {
+    nav {
+      -webkit-backdrop-filter: blur(0.5rem);
+      backdrop-filter: blur(0.5rem);
+      background-color: var(--sl-rapide-ui-header-bg-color);
+      border-bottom: 1px solid var(--sl-color-gray-5);
+      border-top-color: transparent;
+
+      @media (prefers-reduced-transparency) {
+        -webkit-backdrop-filter: initial;
+        backdrop-filter: initial;
+        background-color: var(--sl-color-black);
+      }
+
+      details summary {
+        border-bottom: initial;
+      }
+
+      &:has(details[open]) {
+        -webkit-backdrop-filter: initial;
+        backdrop-filter: initial;
+        background-color: var(--sl-color-black);
+      }
+    }
+
+    .dropdown {
+      border: initial;
+      border-bottom: var(--border-top) solid var(--sl-color-gray-6);
+
+      a:is(:hover, :focus-visible) {
+        background-color: var(--sl-rapide-ui-bg-color);
+        color: var(--sl-color-accent-high);
+      }
+    }
+  }
+
+  /**
+   * Markdown - Enhanced for OpenDocs readability
+   */
+  .sl-markdown-content {
+    /* Improved line height for comfortable reading */
+    line-height: var(--od-leading-comfortable);
+
+    /* Headings with tighter line height */
+    :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+      line-height: var(--od-leading-tight);
+      letter-spacing: var(--od-tracking-tight);
+      font-family: var(--od-font-display);
+    }
+
+    /* Paragraphs with optimal reading width */
+    p:not(:where(.not-content *)) {
+      max-width: 70ch;
+    }
+
+    a:not(:where(.not-content *)) {
+      color: var(--sl-color-white);
+      text-underline-offset: var(--od-space-1);
+      transition: color var(--od-transition-fast);
+
+      &:is(:hover, :focus-visible) {
+        color: var(--sl-color-accent-high);
+      }
+    }
+
+    code:not(:where(.not-content *)) {
+      border-radius: var(--od-radius-sm);
+      font-family: var(--od-font-mono);
+    }
+
+    tr:nth-child(2n):not(:where(.not-content *)) {
+      background-color: var(--sl-color-gray-7);
+    }
+
+    :is(th, td):not(:where(.not-content *)) {
+      border: none;
+    }
+
+    th:not(:where(.not-content *)) {
+      border-bottom: 1px solid var(--sl-color-gray-4);
+    }
+
+    td:not(:where(.not-content *)) {
+      border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+
+    details:not(:where(.not-content *)) {
+      --sl-details-border-color--hover: var(--sl-color-gray-2);
+
+      border-inline-start-width: 1px;
+    }
+
+    .expressive-code {
+      .has-title {
+        --ec-uiPadBlk: 0.375rem;
+      }
+
+      .frame.is-terminal .header {
+        border-bottom: 1px solid var(--sl-rapide-ui-border-color);
+      }
+    }
+  }
+
+  /**
+   * Tabs
+   */
+  starlight-tabs {
+    .tablist-wrapper {
+      overflow-y: hidden;
+    }
+
+    ul[role='tablist'] {
+      border-bottom-width: 1px;
+
+      a[role='tab'] {
+        padding-block: 0.25rem;
+
+        &:not([aria-selected='true']):hover {
+          border-color: var(--sl-color-white);
+          color: var(--sl-color-white);
+        }
+      }
+    }
+  }
+
+  /**
+   * Cards - OpenDocs styling
+   */
+  .card-grid.stagger {
+    --stagger-height: var(--od-space-10);
+  }
+
+  .card {
+    --sl-text-h1: var(--od-text-4xl);
+    --sl-text-h2: var(--od-text-3xl);
+    --sl-text-h3: var(--od-text-2xl);
+    --sl-text-h4: var(--od-text-xl);
+    --sl-text-h5: var(--od-text-lg);
+
+    border-radius: var(--od-radius-xl);
+    padding: clamp(var(--od-space-4), calc(var(--od-space-2) + 1.5vw), var(--od-space-10));
+    transition: transform var(--od-transition-base), box-shadow var(--od-transition-base);
+
+    .title .icon {
+      font-size: 1.875rem;
+    }
+  }
+
+  .sl-link-card {
+    box-shadow: none;
+
+    &:hover {
+      background: initial;
+    }
+
+    .title {
+      color: var(--sl-color-white);
+    }
+
+    .description {
+      color: var(--sl-color-gray-3);
+    }
+
+    &:is(:hover, :focus-visible) .description {
+      color: var(--sl-color-gray-2);
+    }
+
+    .icon {
+      color: var(--sl-color-gray-2);
+    }
+  }
+
+  /**
+   * Asides - OpenDocs color system
+   */
+  .starlight-aside {
+    &.starlight-aside--note {
+      --sl-rapide-asides-bg-color: var(--sl-color-blue-low);
+      --sl-rapide-asides-link-color: var(--sl-color-blue-accent);
+      --sl-rapide-asides-link-hover-color: var(--sl-color-blue-accent-invert);
+      --sl-rapide-asides-table-alt-color: var(--sl-color-blue-alt);
+      --sl-rapide-asides-table-border-color: var(--sl-color-blue-alt-invert);
+    }
+
+    &.starlight-aside--tip {
+      --sl-rapide-asides-bg-color: var(--sl-color-purple-low);
+      --sl-rapide-asides-link-color: var(--sl-color-purple-accent);
+      --sl-rapide-asides-link-hover-color: var(--sl-color-purple-accent-invert);
+      --sl-rapide-asides-table-alt-color: var(--sl-color-purple-alt);
+      --sl-rapide-asides-table-border-color: var(--sl-color-purple-alt-invert);
+    }
+
+    &.starlight-aside--caution {
+      --sl-rapide-asides-bg-color: var(--sl-color-orange-low);
+      --sl-rapide-asides-link-color: var(--sl-color-orange-accent);
+      --sl-rapide-asides-link-hover-color: var(--sl-color-orange-accent-invert);
+      --sl-rapide-asides-table-alt-color: var(--sl-color-orange-alt);
+      --sl-rapide-asides-table-border-color: var(--sl-color-orange-alt-invert);
+    }
+
+    &.starlight-aside--danger {
+      --sl-rapide-asides-bg-color: var(--sl-color-red-low);
+      --sl-rapide-asides-link-color: var(--sl-color-red-accent);
+      --sl-rapide-asides-link-hover-color: var(--sl-color-red-accent-invert);
+      --sl-rapide-asides-table-alt-color: var(--sl-color-red-alt);
+      --sl-rapide-asides-table-border-color: var(--sl-color-red-alt-invert);
+    }
+
+    border: 1px solid var(--sl-color-asides-border);
+    border-radius: var(--od-radius-lg);
+    color: var(--sl-color-asides-text-accent);
+    line-height: var(--od-leading-relaxed);
+
+    a {
+      color: var(--sl-rapide-asides-link-color);
+    }
+
+    a:is(:hover, :focus-visible) {
+      color: var(--sl-rapide-asides-link-hover-color);
+    }
+
+    tr:nth-child(2n) {
+      background-color: var(--sl-rapide-asides-table-alt-color);
+    }
+
+    td {
+      border-color: var(--sl-rapide-asides-table-border-color);
+    }
+  }
+
+  /**
+   * File tree - OpenDocs styling
+   */
+  starlight-file-tree {
+    background-color: var(--sl-rapide-ui-bg-color);
+    border: 1px solid var(--sl-rapide-ui-border-color);
+    border-radius: var(--od-radius-lg);
+    font-family: var(--od-font-mono);
+
+    .directory>details>summary:hover~ul {
+      border-color: var(--sl-color-accent-high);
+    }
+  }
+
+  /**
+   * Notices - OpenDocs styling
+   */
+  .content-panel:first-of-type p:not(:where(.sl-markdown-content *)) {
+    border-radius: var(--od-radius-lg);
+    padding: var(--od-space-4);
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  /**
+   * Steps
+   */
+  .sl-steps>li:last-of-type::after {
+    --guide-width: 1px;
+
+    background: linear-gradient(to bottom, var(--sl-color-hairline-light), var(--sl-color-bg) 85%);
+    bottom: var(--bullet-margin);
+    content: '';
+    inset-inline-start: calc((var(--bullet-size) - var(--guide-width)) / 2);
+    position: absolute;
+    top: calc(var(--bullet-size) + var(--bullet-margin));
+    width: var(--guide-width);
+  }
+
+  /**
+   * Badges
+   */
+  .sl-badge {
+    --sl-badge-default-text: var(--sl-color-green-high);
+    --sl-badge-tip-text: var(--sl-color-purple-high);
+    --sl-badge-caution-text: var(--sl-color-orange-high);
+    --sl-badge-note-text: var(--sl-color-blue-high);
+    --sl-badge-success-text: var(--sl-color-green-high);
+    --sl-badge-danger-text: var(--sl-color-red-high);
+
+    [data-theme='light'] & {
+      --sl-badge-default-bg: var(--sl-color-green-low);
+      --sl-badge-default-text: var(--sl-color-green-high);
+      --sl-badge-tip-bg: var(--sl-color-purple-low);
+      --sl-badge-tip-text: var(--sl-color-purple-high);
+      --sl-badge-caution-bg: var(--sl-color-orange-low);
+      --sl-badge-caution-text: var(--sl-color-orange-high);
+      --sl-badge-note-bg: var(--sl-color-blue-low);
+      --sl-badge-note-text: var(--sl-color-blue-high);
+      --sl-badge-success-bg: var(--sl-color-green-low);
+      --sl-badge-success-text: var(--sl-color-green-high);
+      --sl-badge-danger-bg: var(--sl-color-red-low);
+      --sl-badge-danger-text: var(--sl-color-red-high);
+    }
+  }
+
+  /**
+   * Link buttons - OpenDocs styling
+   */
+  .sl-link-button {
+    padding: var(--od-space-3) var(--od-space-4);
+    border-radius: var(--od-radius-md);
+    transition: all var(--od-transition-fast);
+
+    svg {
+      font-size: 1.25rem;
+    }
+
+    &.primary {
+      background-color: var(--sl-color-green-low);
+      border: 1px solid var(--sl-color-green);
+      color: var(--sl-color-green-high);
+
+      &:is(:hover, :focus-visible) {
+        border-color: oklch(52% 0.11 var(--sl-hue-green));
+        color: var(--sl-color-green-accent-invert);
+      }
+    }
+
+    &.secondary {
+      border-color: var(--sl-color-gray-2);
+      color: var(--sl-color-gray-2);
+
+      &:is(:hover, :focus-visible) {
+        border-color: var(--sl-color-accent-high);
+        color: var(--sl-color-accent-high);
+      }
+    }
+
+    &.minimal {
+      padding-inline: 0.25rem;
+
+      &:is(:hover, :focus-visible) {
+        color: var(--sl-color-accent-high);
+      }
+    }
+  }
+
+  /**
+   * Banner - OpenDocs styling
+   */
+  .sl-banner {
+    background-color: var(--sl-color-green-low);
+    border: 1px solid var(--sl-color-green);
+    border-radius: var(--od-radius-xl);
+    box-shadow: var(--od-shadow-sm);
+    color: var(--sl-color-green-high);
+    line-height: var(--od-leading-relaxed);
+    margin-block: var(--od-space-8) calc(-1 * var(--od-space-2));
+    margin-inline: var(--sl-content-pad-x);
+    max-width: var(--sl-content-width);
+    padding: var(--od-space-4);
+    text-align: start;
+    text-wrap: initial;
+
+    a {
+      color: var(--sl-color-green-accent);
+      text-underline-offset: 0.25em;
+
+      &:is(:hover, :focus-visible) {
+        color: var(--sl-color-green-accent-invert);
+      }
+    }
+
+    @media (min-width: 72rem) {
+      margin-bottom: -1rem;
+      margin-inline: auto;
+
+      [data-has-sidebar] & {
+        justify-self: end;
+        margin-inline: var(--sl-content-pad-x);
+      }
+    }
+  }
+
+  [data-has-sidebar] main:has(.sl-banner) {
+    display: grid;
+  }
+}

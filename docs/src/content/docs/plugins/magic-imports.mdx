@@ -1,0 +1,143 @@
+---
+title: Magic Imports Plugin
+description: Enable virtual imports with framework-specific mappings for Mitosis
+---
+
+A Mitosis plugin that enables **virtual imports** with framework-specific mappings, symbol renaming, and automatic import splitting.
+
+## Installation
+
+```bash
+bun add mitosis-plugins
+```
+
+## Features
+
+- **Framework-specific imports** - Map virtual imports to different packages per target framework
+- **Symbol renaming** - Rename imports to match framework conventions (e.g., `Flow` → `ReactFlow as Flow`)
+- **Auto-splitting** - Automatically split imports across multiple packages
+- **Type safety** - Generates ambient TypeScript declarations for IDE support
+- **Catch-all routing** - Use `'*'` to handle unmapped symbols
+
+## Quick Start
+
+```javascript
+const { magicImportsPlugin } = require('mitosis-plugins');
+
+module.exports = {
+  plugins: [
+    magicImportsPlugin({
+      imports: {
+        'lucide': {
+          mapping: {
+            react: 'lucide-react',
+            svelte: 'lucide-svelte',
+            vue: 'lucide-vue-next'
+          },
+          shim: 'lucide-react'  // Type declarations
+        }
+      },
+      ambientTypesPath: 'src/ambient.d.ts'
+    })
+  ]
+};
+```
+
+## Usage
+
+**Source code:**
+```typescript
+import { Home, Settings } from 'virtual:lucide';
+```
+
+**Generated output:**
+- React: `import { Home, Settings } from 'lucide-react';`
+- Svelte: `import { Home, Settings } from 'lucide-svelte';`
+- Vue: `import { Home, Settings } from 'lucide-vue-next';`
+
+## Configuration
+
+### Basic Configuration
+
+```javascript
+magicImportsPlugin({
+  imports: {
+    'virtual-package-name': {
+      mapping: {
+        react: 'react-package',
+        vue: 'vue-package',
+        svelte: 'svelte-package'
+      },
+      shim: 'react-package'  // For TypeScript
+    }
+  }
+})
+```
+
+### Symbol Renaming
+
+```javascript
+magicImportsPlugin({
+  imports: {
+    'flow': {
+      mapping: {
+        react: {
+          symbols: {
+            'Flow': { from: 'reactflow', symbol: 'ReactFlow' }
+          }
+        },
+        vue: {
+          symbols: {
+            'Flow': { from: '@vue-flow/core', symbol: 'VueFlow' }
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+### Auto-Splitting
+
+```javascript
+magicImportsPlugin({
+  imports: {
+    'flow': {
+      mapping: {
+        vue: {
+          symbols: {
+            'Flow': { from: '@vue-flow/core', symbol: 'VueFlow' },
+            'Background': '@vue-flow/background',
+            'Controls': '@vue-flow/controls'
+          }
+        }
+      }
+    }
+  }
+})
+```
+
+## API Reference
+
+### Plugin Options
+
+```typescript
+interface MagicImportsOptions {
+  imports: Record<string, ImportConfig>;
+  ambientTypesPath?: string;
+}
+
+interface ImportConfig {
+  mapping: Record<string, MappingValue>;
+  shim?: string | ShimValue;
+}
+```
+
+### Related Plugins
+
+- **[Target Files](/plugins/target-files/)** - Use together when you need framework-specific files for your virtual imports
+- **[Rich Types](/plugins/rich-types/)** - Combine for better TypeScript support with complex import mappings
+
+## License
+
+MIT

@@ -1,0 +1,51 @@
+{
+  "name": "mitosis-plugins-theme",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "Starlight theme for the Plugins for Mitosis documentation.",
+  "author": "Saulo Vallory",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./styles/layers": "./styles/layers.css",
+    "./styles/tokens": "./styles/tokens.css",
+    "./styles/theme": "./styles/theme.css",
+    "./styles/base": "./styles/base.css",
+    "./styles/anchors": "./styles/anchors.css",
+    "./overrides/*": "./overrides/*",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "astro-types": "./bin/astro-types.js"
+  },
+  "scripts": {
+    "lint": "eslint . --cache --max-warnings=0"
+  },
+  "peerDependencies": {
+    "@astrojs/starlight": "^0.37.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.0.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "starlight",
+    "theme",
+    "rapide",
+    "vitesse",
+    "plugin",
+    "documentation",
+    "astro"
+  ],
+  "homepage": "https://github.com/HiDeoo/starlight-theme-rapide",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/starlight-theme-rapide.git",
+    "directory": "packages/starlight-theme-rapide"
+  },
+  "bugs": "https://github.com/HiDeoo/starlight-theme-rapide/issues"
+}

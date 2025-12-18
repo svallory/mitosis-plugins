@@ -1,0 +1,37 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "types": [
+      "astro/client",
+      "node"
+    ],
+    "jsx": "preserve",
+    "jsxImportSource": "react",
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
+    "paths": {
+      "@ui/*": [
+          "../docs-theme/src/components/*",
+          "./src/components/*"
+      ]
+    }
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

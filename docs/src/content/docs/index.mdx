@@ -1,0 +1,163 @@
+---
+title: Plugins for Mitosis
+description: Powerful plugins for cross-framework component development with Mitosis
+template: splash
+hero:
+  tagline: Build once, compile everywhere. Enhance your Mitosis workflow with powerful plugins that solve real cross-framework challenges.
+  image:
+    light: ../../assets/logo-light.svg
+    dark: ../../assets/logo-dark.svg
+    alt: Plugins for Mitosis Logo
+  actions:
+    - text: Get Started
+      link: /guides/getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/svallory/mitosis-plugins
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard, Tabs, TabItem, Code } from '@astrojs/starlight/components';
+import Section from '../../components/Section.astro';
+import Grid from '@ui/Grid.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import PluginCard from '../../components/PluginCard.astro';
+
+export const base = '/mitosis-plugins';
+
+{/* 
+<Section title="Why Mitosis Plugins?" description="Solve the real challenges of cross-framework component development">
+
+<Grid columns={3}>
+  <FeatureCard title="Framework-Agnostic Imports" icon="puzzle">
+    Write imports once, let the build system handle framework-specific mappings automatically.
+  </FeatureCard>
+
+  <FeatureCard title="Clean Package Structure" icon="seti:folder">
+    Generate proper index files and maintain clean import paths across all target frameworks.
+  </FeatureCard>
+
+  <FeatureCard title="Type-Safe Components" icon="seti:typescript">
+    Preserve TypeScript types and fix inference issues that arise during Mitosis compilation.
+  </FeatureCard>
+</Grid>
+
+</Section> */}
+
+<Section title="Available Plugins" description="Each plugin solves a specific cross-framework challenge">
+
+<Grid columns={2}>
+  <PluginCard
+    title="Magic Imports"
+    description="Define virtual imports that automatically resolve to framework-specific implementations. Perfect for hooks, utilities, and shared logic."
+    href="/plugins/magic-imports/"
+  />
+
+  <PluginCard
+    title="Index Generator"
+    description="Automatically generate index.ts files for clean re-exports. Maintain proper import paths without manual file management."
+    href="/plugins/index-generator/"
+  />
+
+  <PluginCard
+    title="Story Generator"
+    description="Auto-generate Storybook stories from your Mitosis components. Test your components in every target framework."
+    href="/plugins/story-generator/"
+    status="beta"
+  />
+
+  <PluginCard
+    title="Rich Types"
+    description="Fix TypeScript inference issues that occur during compilation. Ensure your components have proper types in all frameworks."
+    href="/plugins/rich-types/"
+  />
+
+  <PluginCard
+    title="Target Files"
+    description="Handle framework-specific files alongside your Mitosis components. Include CSS, assets, and config per target."
+    href="/plugins/target-files/"
+  />
+
+  <PluginCard
+    title="CSS Modules"
+    description="Inject CSS from external module files directly into your components. Keep styles organized and maintainable."
+    href="/plugins/css-modules/"
+  />
+</Grid>
+
+</Section>
+
+<Section title="Explore the Docs">
+
+<CardGrid>
+  <LinkCard
+    title="Overview"
+    description="Understand how Mitosis Plugins work together"
+    href={`${base}/guides/overview/`}
+  />
+  <LinkCard
+    title="Getting Started"
+    description="Step-by-step installation and setup guide"
+    href={`${base}/guides/getting-started/`}
+  />
+  <LinkCard
+    title="Plugin Reference"
+    description="Detailed API documentation for each plugin"
+    href={`${base}/plugins/magic-imports/`}
+  />
+  <LinkCard
+    title="GitHub"
+    description="View source, report issues, and contribute"
+    href="https://github.com/svallory/mitosis-plugins"
+  />
+</CardGrid>
+
+</Section>
+
+<style>{`
+  .hero h1 {
+    display: none;
+  }
+
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .hero > img {
+    order: -1 !important;
+    width: min(90%, 35rem) !important;
+    max-width: 600px !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .hero .stack {
+    align-items: center !important;
+  }
+
+  .hero .copy {
+    align-items: center !important;
+  }
+
+  .hero .actions {
+    justify-content: center !important;
+  }
+
+  @media (min-width: 50rem) {
+    .hero {
+      grid-template-columns: 1fr !important;
+    }
+
+    .hero > img {
+      width: min(70%, 35rem) !important;
+      max-width: 700px !important;
+    }
+
+    .hero .stack {
+      text-align: center !important;
+    }
+  }
+`}</style>

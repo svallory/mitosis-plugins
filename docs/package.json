@@ -1,0 +1,40 @@
+{
+  "name": "starlight-template",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "A reusable Starlight documentation template",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/starlight": "^0.37.1",
+    "@shikijs/rehype": "^3.7.0",
+    "@shikijs/transformers": "^3.7.0",
+    "@shikijs/twoslash": "^3.7.0",
+    "@stoplight/json-schema-viewer": "^4.16.4",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "astro": "^5.6.1",
+    "floating-ui": "^5.2.8",
+    "mitosis-plugins-theme": "^0.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.34.2",
+    "shiki": "^3.7.0",
+    "starlight-links-validator": "^0.17.0",
+    "starlight-llms-txt": "^0.5.1",
+    "starlight-package-managers": "^0.11.0",
+    "starlight-theme-opendocs": "../docs-theme",
+    "starlight-theme-rapide": "^0.5.2",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.0",
+    "@types/unist": "^3.0.0"
+  }
+}

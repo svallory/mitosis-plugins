@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(npx tsc:*)",
+      "Bash(bun add:*)",
+      "Bash(chmod:*)",
+      "Bash(bun x api-extractor-model-info:*)",
+      "WebSearch",
+      "Bash(find:*)",
+      "WebFetch(domain:www.mintlify.com)",
+      "Bash(grep:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

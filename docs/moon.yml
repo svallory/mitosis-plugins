@@ -1,0 +1,64 @@
+$schema: "https://moonrepo.dev/schemas/project.json"
+
+project:
+  name: '@rcs-lang/docs'
+  description: 'Documentation site for RCL'
+
+id: docs
+
+stack: frontend
+type: application
+language: typescript
+platform: bun
+
+tags:
+  - astro
+  - bun
+  - typescript
+  - documentation
+  - rcl
+
+# Disable project references
+toolchain:
+  typescript:
+    syncProjectReferences: false
+
+tasks:
+  build:
+    command: astro build
+    inputs:
+      - "src/**/*"
+      - "*.config.*"
+      - "package.json"
+    outputs:
+      - "dist"
+    env:
+      NODE_ENV: "production"
+
+  dev:
+    command: astro dev
+    local: true
+    env:
+      NODE_ENV: "development"
+
+  preview:
+    command: astro preview
+    local: true
+    deps:
+      - build
+
+  clean:
+    command: rm -rf dist .astro
+    local: true
+
+  typecheck:
+    command: astro check
+    inputs:
+      - "src/**/*"
+      - "*.config.*"
+      - "tsconfig.json"
+
+  lint:
+    args:
+      - '--ext'
+      - '.ts,.tsx,.astro'

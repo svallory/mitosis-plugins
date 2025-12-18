@@ -1,0 +1,106 @@
+---
+title: Mitosis Plugins Overview
+description: Complete overview of mitosis-plugins with plugin descriptions and use cases
+---
+
+A collection of plugins for [Mitosis](https://mitosis.builder.io/) to enhance cross-framework component development.
+
+## What are Mitosis Plugins?
+
+Mitosis Plugins extend the Mitosis compiler to solve common challenges in cross-framework development:
+- Framework-specific package mapping
+- Clean component exports
+- Automated documentation generation
+- TypeScript type inference fixes
+- Framework-specific code handling
+- CSS module integration
+
+## Available Plugins
+
+| Plugin | Description |
+|--------|-------------|
+| [`magicImportsPlugin`](#magic-imports) | Replace virtual imports with framework-specific packages |
+| [`indexGeneratorPlugin`](#index-generator) | Generate index.ts files for folder-based imports |
+| [`storyGeneratorPlugin`](#story-generator) | Auto-generate Storybook stories from components |
+| [`richTypesPlugin`](#rich-types) | Fix TypeScript type inference issues |
+| [`targetFilesPlugin`](#target-files) | Copy target-specific files using naming convention |
+| [`cssModulesPlugin`](#css-modules) | Inject CSS from `.module.css` files into components |
+
+## Plugin Summaries
+
+### Magic Imports
+
+Replace virtual imports with framework-specific packages. Perfect for libraries that have different package names per framework (e.g., `lucide-react` vs `lucide-vue-next`).
+
+**When to use:**
+- You need the same functionality from different packages in each framework
+- Frameworks use different component names (ReactFlow vs VueFlow)
+- You want to maintain a single import statement in source code
+
+**Learn more:** [Magic Imports Plugin →](/plugins/magic-imports/)
+
+### Index Generator
+
+Generates `index.ts` files for each component to support clean imports like `import Button from './components/Button'` instead of `./components/Button/Button`.
+
+**When to use:**
+- You want clean, concise import paths
+- You're organizing components into subdirectories
+- You're building a component library
+
+**Learn more:** [Index Generator Plugin →](/plugins/index-generator/)
+
+### Story Generator
+
+Automatically generates framework-specific Storybook stories from component metadata using customizable templates.
+
+**When to use:**
+- You want to document components with interactive examples
+- You need framework-specific Storybook stories
+- You want to maintain story configuration alongside component code
+
+**Learn more:** [Story Generator Plugin →](/plugins/story-generator/)
+
+### Rich Types
+
+Adds TypeScript type hints to fix common Mitosis type inference issues, especially with `useState` and dynamic components.
+
+**When to use:**
+- Mitosis generates code with TypeScript errors
+- Dynamic component references need type casts
+- Generated code lacks proper type annotations
+
+**Learn more:** [Rich Types Plugin →](/plugins/rich-types/)
+
+### Target Files
+
+Enables target-specific files using `*.[target].*` naming convention. Perfect for framework-specific code that can't be handled by Mitosis compilation.
+
+**When to use:**
+- A library has different package structures between frameworks
+- You need framework-specific utility functions
+- You want to avoid bundling unused code
+
+**Learn more:** [Target Files Plugin →](/plugins/target-files/)
+
+### CSS Modules
+
+Reads CSS from `.module.css` files and injects into components, enabling better IDE support and cleaner component files.
+
+**When to use:**
+- You prefer CSS in separate files rather than inline `useStyle`
+- You want better IDE support for CSS editing
+- You're migrating existing CSS Modules to Mitosis
+
+**Learn more:** [CSS Modules Plugin →](/plugins/css-modules/)
+
+## Next Steps
+
+- Start with the [Getting Started Guide](/guides/getting-started/) for step-by-step setup and configuration
+- Explore individual plugin documentation for detailed usage and advanced features
+- Learn how to [contribute](/guides/contributing/) to the project
+- Check out the [GitHub repository](https://github.com/svallory/mitosis-plugins) for source code and examples
+
+## License
+
+MIT
