@@ -20,6 +20,11 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [[remarkBaseUrl, { base }]],
 	},
+	vite: {
+		ssr: {
+			noExternal: ['@astrojs/starlight'],
+		},
+	},
 	integrations: [
 		react(),
 		starlight({

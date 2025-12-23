@@ -36,11 +36,11 @@ export default function starlightThemeOpenDocsPlugin(): StarlightPlugin {
           components: overrideComponents(config, ['LanguageSelect', 'Pagination', 'ThemeSelect', 'Sidebar'], logger),
           customCss: [
             ...(config.customCss ?? []),
-            'starlight-theme-opendocs/styles/layers',
-            'starlight-theme-opendocs/styles/tokens',
-            'starlight-theme-opendocs/styles/theme',
-            'starlight-theme-opendocs/styles/base',
-            ...(config.markdown?.headingLinks === false ? [] : ['starlight-theme-opendocs/styles/anchors']),
+            'mitosis-plugins-theme/styles/layers',
+            'mitosis-plugins-theme/styles/tokens',
+            'mitosis-plugins-theme/styles/theme',
+            'mitosis-plugins-theme/styles/base',
+            ...(config.markdown?.headingLinks === false ? [] : ['mitosis-plugins-theme/styles/anchors']),
           ],
           expressiveCode:
             config.expressiveCode === false

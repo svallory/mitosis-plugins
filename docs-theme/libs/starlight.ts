@@ -9,15 +9,15 @@ export function overrideComponents(
   const components = { ...starlightConfig.components }
   for (const override of overrides) {
     if (starlightConfig.components?.[override]) {
-      const fallback = `starlight-theme-opendocs/overrides/${override}.astro`
+      const fallback = `mitosis-plugins-theme/overrides/${override}.astro`
 
       logger.warn(`A \`<${override}>\` component override is already defined in your Starlight configuration.`)
       logger.warn(
-        `To use \`starlight-theme-opendocs\`, either remove this override or manually render the content from \`${fallback}\`.`,
+        `To use \`mitosis-plugins-theme\`, either remove this override or manually render the content from \`${fallback}\`.`,
       )
       continue
     }
-    components[override] = `starlight-theme-opendocs/overrides/${override}.astro`
+    components[override] = `mitosis-plugins-theme/overrides/${override}.astro`
   }
 
   return components
