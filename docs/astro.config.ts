@@ -7,11 +7,11 @@ import react from '@astrojs/react';
 import { remarkBaseUrl } from './src/plugins/remark-base-url.ts';
 import theme from 'mitosis-plugins-theme';
 
-const base = '/mitosis-plugins';
+const base = '/';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://svallory.github.io',
+	site: 'https://mitosis-plugins.com',
 	base,
 	prefetch: true,
 	devToolbar: {
@@ -22,7 +22,7 @@ export default defineConfig({
 	},
 	vite: {
 		ssr: {
-			noExternal: ['@astrojs/starlight', 'mitosis-plugins-theme', 'starlight-theme-opendocs'],
+			noExternal: ['@astrojs/starlight'],
 		},
 	},
 	integrations: [

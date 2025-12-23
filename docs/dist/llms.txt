@@ -1,0 +1,13 @@
+# Mitosis Plugins
+
+> Documentation for mitosis-plugins - Enhance cross-framework component development with Mitosis
+
+## Documentation Sets
+
+- [Abridged documentation](https://mitosis-plugins.com/llms-small.txt): a compact version of the documentation for Mitosis Plugins, with non-essential content removed
+- [Complete documentation](https://mitosis-plugins.com/llms-full.txt): the full documentation for Mitosis Plugins
+
+## Notes
+
+- The complete documentation includes all content from the official documentation
+- The content is automatically generated from the same source as the official documentation
