@@ -22,7 +22,7 @@ export default defineConfig({
 	},
 	vite: {
 		ssr: {
-			noExternal: ['@astrojs/starlight', 'mitosis-plugins-theme'],
+			noExternal: ['@astrojs/starlight', 'mitosis-plugins-theme', 'starlight-theme-opendocs'],
 		},
 	},
 	integrations: [
